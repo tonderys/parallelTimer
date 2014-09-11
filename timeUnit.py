@@ -7,7 +7,15 @@ class timeUnit:
     def getTime(self):
         time = ""
         if self.hours < 10:
-            time +='0'+ str(self.hours)
+            time +='0'+ str(self.hours)+":"
         else:
-            time += str(self.hours)
+            time += str(self.hours)+":"
+        if self.minutes < 10:
+            time +='0'+ str(self.minutes)+":"
+        else:
+            time += str(self.minutes)+":"
+        if self.seconds < 10:
+            time +='0'+ str(self.seconds)
+        else:
+            time += str(self.seconds)
         return time
