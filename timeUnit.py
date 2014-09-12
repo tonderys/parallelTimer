@@ -15,12 +15,10 @@ class timeUnit:
         return "%02d:%02d:%02d"%(self.hours, self.minutes, self.seconds)
 
     def setTime(self, time):
-        if re.match("[0-9]{2}:[0-9]{2}:[0-9]{2}", time):
+        if re.match("[0-9]{2}:[0-5][0-9]:[0-5][0-9]", time):
             self.hours = int(time.split(':')[0])
             self.minutes = int(time.split(':')[1])
             self.seconds = int(time.split(':')[2])
-        elif re.match("[0-9]*", time):
-            self.setSeconds(int(time))
         else:
             self.hours = 0
             self.minutes = 0
