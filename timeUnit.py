@@ -38,7 +38,7 @@ class timeUnit:
         self.minutes -= value
 
     def substractHours(self, value = 1):
-        self.Hours -= value
+        self.hours -= value
         
     def addSeconds(self, value):
         self.seconds += value
