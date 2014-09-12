@@ -57,15 +57,23 @@ class timeUnitTests(unittest.TestCase):
         testedTimeUnit.substractHours(2)
         self.assertEqual(testedTimeUnit.getTime(), '00:23:07')
 
-    def testSubstractSecondsFunctionExceedingSecondsQuantity(self):
+    def SubstractSecondsFunctionExceedingSecondsQuantity(self):
         testedTimeUnit = timeUnit('02:23:07')
         testedTimeUnit.substractSeconds(9)
         self.assertEqual(testedTimeUnit.getTime(), '02:22:58')
 
-    def testSubstractMinutesFunctionExceedingMinutesQuantity(self):
+    def SubstractMinutesFunctionExceedingMinutesQuantity(self):
         testedTimeUnit = timeUnit('02:23:07')
         testedTimeUnit.substractSeconds(33)
         self.assertEqual(testedTimeUnit.getTime(), '01:50:07')
+
+    def InvalidInputFullTimeSeconds(self):
+        testedTimeUnit = timeUnit('02:14:81')
+        self.assertEqual(testedTimeUnit.getTime(), '00:00:00')
+
+    def InvalidInputFullTimeMinutes(self):
+        testedTimeUnit = timeUnit('02:74:11')
+        self.assertEqual(testedTimeUnit.getTime(), '00:00:00')
 
 if __name__ == '__main__':
     unittest.main()
