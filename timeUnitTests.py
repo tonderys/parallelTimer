@@ -54,28 +54,65 @@ class timeUnitFunctionsTests(unittest.TestCase):
         self.testedTimeUnit.substractSeconds(3)
         self.assertEqual(self.testedTimeUnit.getTime(), '02:23:04')
 
-    def testSubstractMinutesFunction(self):
-        self.testedTimeUnit.substractMinutes(4)
-        self.assertEqual(self.testedTimeUnit.getTime(), '02:19:07')
-
-    def testSubstractHoursFunction(self):
-        self.testedTimeUnit.substractHours(2)
-        self.assertEqual(self.testedTimeUnit.getTime(), '00:23:07')
-
     def testSubstractSecondsFunctionExceedingSecondsQuantity(self):
         self.testedTimeUnit.substractSeconds(9)
         self.assertEqual(self.testedTimeUnit.getTime(), '02:22:58')
  
-#   def testSubstractMinutesFunctionExceedingMinutesQuantity(self):
-#       self.testedTimeUnit.substractMinutes(33)
-#       self.assertEqual(self.testedTimeUnit.getTime(), '01:50:07')
+    def testSubstractSecondsFunctionThreeMinutes(self):
+        self.testedTimeUnit.substractSeconds(60 * 3)
+        self.assertEqual(self.testedTimeUnit.getTime(), '02:20:07')
  
-#   def testAddSecondsFunctionExceedingSecondsCapacity(self):
-#       self.testedTimeUnit.addSeconds(59)
-#       self.assertEqual(self.testedTimeUnit.getTime(), '02:24:06')
+    def testSubstractSecondsFunctionMoreThanMinute(self):
+        self.testedTimeUnit.substractSeconds(64)
+        self.assertEqual(self.testedTimeUnit.getTime(), '02:22:03')
+ 
+    def testSubstractMinutesFunction(self):
+        self.testedTimeUnit.substractMinutes(4)
+        self.assertEqual(self.testedTimeUnit.getTime(), '02:19:07')
 
-#   def testAddMinutesFunctionExceedingMinutesCapacity(self):
-#       self.testedTimeUnit.addMinutes(41)
-#       self.assertEqual(self.testedTimeUnit.getTime(), '03:03:07')
+    def testSubstractMinutesFunctionExceedingMinutesQuantity(self):
+        self.testedTimeUnit.substractMinutes(33)
+        self.assertEqual(self.testedTimeUnit.getTime(), '01:50:07')
+ 
+    def testSubstractMinutesFunctionTwoHours(self):
+        self.testedTimeUnit.substractMinutes(2 * 60)
+        self.assertEqual(self.testedTimeUnit.getTime(), '00:23:07')
+ 
+    def testSubstractMinutesFunctionMoreThanHour(self):
+        self.testedTimeUnit.substractMinutes(66)
+        self.assertEqual(self.testedTimeUnit.getTime(), '01:17:07')
+ 
+    def testSubstractHoursFunction(self):
+        self.testedTimeUnit.substractHours(2)
+        self.assertEqual(self.testedTimeUnit.getTime(), '00:23:07')
+
+    def testSubstractSecondMethodAllSeconds(self):
+        self.testedTimeUnit.substractSeconds(2 * 3600 + 23 * 60 + 7)
+        self.assertEqual(self.testedTimeUnit.getTime(), '00:00:00')
+
+    def testAddSecondsFunction(self):
+        self.testedTimeUnit.addSeconds(14)
+        self.assertEqual(self.testedTimeUnit.getTime(), '02:23:21')
+
+    def testAddSecondsFunctionExceedingSecondsCapacity(self):
+        self.testedTimeUnit.addSeconds(59)
+        self.assertEqual(self.testedTimeUnit.getTime(), '02:24:06')
+
+    def testAddSecondsFunctionUpToTwoMinutes(self):
+        self.testedTimeUnit.addSeconds(60 + 53)
+        self.assertEqual(self.testedTimeUnit.getTime(), '02:25:00')
+
+    def testAddMinutesFunction(self):
+        self.testedTimeUnit.addMinutes(8)
+        self.assertEqual(self.testedTimeUnit.getTime(), '02:31:07')
+
+    def testAddMinutesFunctionExceedingMinutesCapacity(self):
+        self.testedTimeUnit.addMinutes(41)
+        self.assertEqual(self.testedTimeUnit.getTime(), '03:04:07')
+
+    def testAddMinutesFunctionUpToTwoHours(self):
+        self.testedTimeUnit.addMinutes(60 + 37)
+        self.assertEqual(self.testedTimeUnit.getTime(), '04:00:07')
+
 if __name__ == '__main__':
     unittest.main()
