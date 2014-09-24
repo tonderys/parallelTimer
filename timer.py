@@ -15,7 +15,7 @@ class Timer:
     def countDown(self):
         while self.currentTime.getSeconds() > 0:
             time.sleep(1)
-            self.currentTime.substractSeconds(1)
+            self.currentTime.substractSecond()
         return True
 
     def startCountDown(self):

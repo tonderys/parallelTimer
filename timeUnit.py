@@ -11,12 +11,6 @@ class timeUnit:
             self.minutes = 0
             self.seconds = 0
 
-    def getTimeString(self):
-        return "%02d:%02d:%02d"%(self.hours, self.minutes, self.seconds)
-
-    def getSeconds(self):
-        return self.seconds + self.minutes * 60 + self.hours * 3600
-
     def setTime(self, time):
         if re.match("[0-9]{2}:[0-5][0-9]:[0-5][0-9]", time):
             self.hours = int(time.split(':')[0])
@@ -32,40 +26,19 @@ class timeUnit:
         self.minutes = (time % 3600) // 60
         self.seconds = time % 60
         
-    def substractSeconds(self, value = 1):
-        if (self.seconds >= value):
-            self.seconds -= value
-        elif (self.seconds < value % 60):
-            self.seconds = 60 - (value % 60 - self.seconds) 
-            self.substractMinutes(1 + value // 60)
-        else:
-            self.seconds -= value % 60
-            self.substractMinutes(value // 60)
+    def getTimeString(self):
+        return "%02d:%02d:%02d"%(self.hours, self.minutes, self.seconds)
 
-    def substractMinutes(self, value = 1):
-        if (self.minutes >= value):
-            self.minutes -= value
-        elif (self.minutes < value % 60):
-            self.minutes = 60 - (value % 60 - self.minutes)
-            self.substractHours(1 + value // 60)
-        else:
-            self.minutes -= value % 60
-            self.substractHours(value // 60)
+    def getSeconds(self):
+        return self.seconds + self.minutes * 60 + self.hours * 3600
 
-    def substractHours(self, value = 1):
-        if self.hours - value < 0:
-            self.hours = 0
-        else:
-            self.hours -= value
-        
-    def addSeconds(self, value):
-        self.addMinutes((self.seconds + value) // 60)
-        self.seconds = (self.seconds + value) % 60
-
-    def addMinutes(self, value):
-        self.addHours((self.minutes + value) // 60)
-        self.minutes = (self.minutes + value) % 60
-
-    def addHours(self, value):
-        self.hours += value
-
+    def substractSecond(self):
+        if self.seconds > 0:
+            self.seconds -= 1
+        elif self.minutes > 0: 
+            self.minutes -= 1
+            self.seconds = 59
+        elif self.hours > 0:
+            self.hours -= 1
+            self.minutes = 59
+            self.seconds = 59
